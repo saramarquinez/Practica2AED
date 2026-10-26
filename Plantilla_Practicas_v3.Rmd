@@ -487,4 +487,42 @@ ggsave('./results/Ejercicio6.pdf')
 
 ## Ejercicio 7
 
+```{r}
+load("./data/weatherAUS_distributions.RData")
+
+str(ds)
+```
+
+```{r}
+grafico7_1<-ggplot(data=ds,aes(x=Year,y=MinTemp))+geom_boxplot()
+
+grafico7_1
+```
+
+En el gráfico vemos distintos boxplots para cada año en el que vemos la distribución de las temperaturas mínimas
+
+```{r}
+grafico7_2<-ggplot(data=ds,aes(x=Year,y=MinTemp))+geom_violin()
+
+grafico7_2
+```
+```{r}
+grafico7_2<-ggplot(data=ds,aes(x=Year,y=MinTemp,fill=Year))+geom_violin()+labs(title="Distribución de temperaturas máximas por año",x="Año",y="Temperatura (ºC)")
+
+grafico7_2
+
+```
+En este caso vemos como hemos añadido los títulos a los ejes y a la gráfica y coloreado los violines para cada año.
+
+```{r}
+grafico7_2<-ggplot(data=ds,aes(x=Year,y=MinTemp,fill=Year))+geom_violin()+labs(title="Distribución de temperaturas máximas por año",x="Año",y="Temperatura (ºC)")+theme(legend.position="none",axis.text.x=element_text(angle=45,hjust=1))
+
+grafico7_2
+```
+
+Al poner que la legend position como "none", conseguimos eliminar la leyenda y como los años se solapan, poniendolos a 45º conseguimos que se visualicen bien.
+
+```{r}
+ggsave('./results/Ejercicio7.pdf') 
+```
 
