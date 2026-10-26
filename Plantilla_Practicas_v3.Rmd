@@ -526,3 +526,21 @@ Al poner que la legend position como "none", conseguimos eliminar la leyenda y c
 ggsave('./results/Ejercicio7.pdf') 
 ```
 
+## Ejercico 8
+
+```{r}
+df<-read.table(url("http://assets.datacamp.com/blog_assets/chol.txt"),header=TRUE)
+
+str(df)
+```
+
+```{r}
+grafico8<-ggplot(data=df,aes(x=HEIGHT))+
+geom_histogram(breaks=20,aes(y=after_stat(count)),fill="blue",alpha=0.5,colour="red")+
+labs(title="Histograma de la variable Altura",x="Altura (cm)",y="Frecuencia")+
+xlim(155,195)
+
+grafico8
+
+```
+No consigo el histograma
