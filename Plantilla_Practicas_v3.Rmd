@@ -339,4 +339,46 @@ ggsave('./results/Ejercicio2.pdf',plot=grafico2_1)
 
 ## Ejercicio 3
 
+```{r}
+load("./data/iris_tidy.RData")
+
+str(iris.tidy)
+```
+```{r}
+iris.grafico1<-ggplot(data=iris.tidy,aes(x=Species,y=Value))+geom_point()
+
+iris.grafico1
+```
+```{r}
+iris.grafico2<-ggplot(data=iris.tidy,aes(x=Species,y=Value,colour=Part))+geom_point()
+
+iris.grafico2
+```
+```{r}
+# Colocación en filas:
+iris.grafico3_f<-iris.grafico2+facet_grid(Measure~.)
+
+iris.grafico3_f
+
+# Colocación en columnas
+
+iris.grafico3_c<-iris.grafico2+facet_grid(.~Measure)
+
+iris.grafico3_c
+```
+En este caso, al estar los valores en el eje Y, es más facil comparar las diferencias entre las medidas si las disponemos en columnas en vez de en filas.
+
+```{r}
+iris.grafico4<-ggplot(data=iris.tidy,aes(x=Species,y=Value,colour=Part))+geom_jitter()+facet_grid(.~Measure)
+
+iris.grafico4
+```
+La función jitter lo que hace es introducir un ruido leve lo que hace que los puntos se dispersen un poco favoreciendo así la visualización de los datos de cada zona y permitiendo saber cuántos datos hay en cada "grupo" de datos.
+
+```{r}
+ggsave('./results/Ejercicio3.pdf',plot=iris.grafico4) 
+```
+
+
+
 
