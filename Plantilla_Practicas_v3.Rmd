@@ -278,76 +278,65 @@ pacman::p_load(
 
 ```
 
-# Trabaja con proyectos.
 
-<https://epirhandbook.com/es/r-projects.html>
-
-Para cada tarea crea un nuevo proyecto con, al menos, una carpeta *./data*, que contenga los datos (puedes usar carpetas adicionales para organizar la información **./program, /figuras**, etc). (La carpeta donde se encuentra este fichero es un proyecto)
-
-# Introducción del trabajo
-
-Haz un breve introducción indicando el contenido del documento:
-
-" El objetivo de esta *tarea/trabajo/práctica* es ... bla bla bla "
-
-## Subapartado (nivel 2 \##). Rutas locales
-
-Usa rutas referidas a la carpeta en la que se encuentra el fichero fuente, y siempre rutas **relativas** a dicha ubicación. Ejemplos
-
-**ruta1\<-'data/tabla1.txt'** : el fichero está en la carpeta datos que cuelga del directorio donde está el código.
-
-**ruta2\<-'./data/tabla1.txt'** : el fichero está en la carpeta datos que cuelga de un nivel superior
-
-**ruta3\<-'../data/tabla1.txt'** : el fichero está en la carpeta datos que cuelga del nivel superior
-
-**ruta4\<-'./../data/tabla1.txt'** : igual a la anterior
-
-**ruta4\<-'../../data/tabla1.txt'** : el fichero está en la carpeta datos que cuelga de dos niveles superiores
-
-<font color=red size=4>ruta5\<-'C:/MisDatos/Ej.txt' </font> **NO USAR NUNCA UNA RUTA ABSOLUTA COMO ESTA**
-
-### Subsubapartado (nivel 3 \###). Cómo incluir figuras
-
-Podemos especificar parámetros de tamaño y ubicación en el *chunk*
-
-<!-- ```{r rmarkdown, echo=FALSE,include=FALSE, out.width='30%', fig.align='center', fig.cap='Logo ETSE (desde archivo PNG).'} -->
-
-<!-- knitr::include_graphics("figure/logoETSE.png") -->
-
-<!-- ``` -->
-
-### Subsubapartado (nivel 3 \###).
-
-En este caso visualizamos el código. Observa como podemos incluir una figura y también ponerle un título
-
-```{r rmarkdown2, echo=TRUE, out.width='20%', fig.align='center', fig.cap='Logo GCD (desde archivo png).'}
-knitr::include_graphics("figure/logoEtse.png")
-```
-
-# Inclusión de ecuaciones
-
-Puedes incluir expresiones matemáticas usando la nomenclatura LaTeX por ejemplo:
-
-$ax^2+bx+c=0$
-
-### Subsubapartado (nivel 3 \###).
-
-Podemos referirnos a una figura haciendo referencia al nombre del chunk `\@ref(fig:chunk-name))`
-
-```{r newFig, echo=TRUE, out.width='60%', fig.align='center', fig.cap='Histograma.'}
-
-hist(rnorm(100000),breaks=100)
-
-```
-
-En la figura \@ref(fig:newFig) se muestra un histograma de una distribución normal.
-
-# Nuevo apartado nivel I \#
-
-Compila el proyecto como **pdf** y como **html** y observa el fichero obtenido. Cuando generes el documento **html**, observa el efecto de cambiar el valor **theme** por algún otro. Ten en cuenta que este parámetro solo se puede usar la salida **html**.
+## Ejercicio 1
 
 ```{r}
+library(ggplot2)
 
+load("./data/weatherAUS.RData")
 
+grafico1<-ggplot(data=ds,aes(x=MinTemp,y=MaxTemp))
 
+grafico1<-grafico1+geom_point()
+
+grafico1
 ```
+
+```{r}
+grafico2<-ggplot(data=ds,aes(x=MinTemp,y=MaxTemp, colour=RainTomorrow))+geom_point()
+
+grafico2<-grafico2+geom_point()
+
+grafico2
+```
+
+
+```{r}
+grafico3<-grafico2+ggtitle("Temperatura mínima vs temperatura máxima")
+
+
+grafico3
+```
+```{r}
+ggsave('./results/Ejercicio1.pdf',plot=grafico3)
+```
+
+
+## Ejercicio 2
+
+```{r}
+grafico2_1<-ggplot(data=ds,aes(x =Temp9am,y=Pressure9am))+geom_point()
+
+grafico2_1
+```
+
+```{r}
+grafico2_1<-ggplot(data=ds,aes(x =Temp9am,y=Pressure9am,shape=RainToday))+geom_point()
+
+grafico2_1
+```
+
+```{r}
+grafico2_1<-ggplot(data=ds,aes(x =Temp9am,y=Pressure9am,colour=RainToday))+geom_point()
+
+grafico2_1
+```
+```{r}
+ggsave('./results/Ejercicio2.pdf',plot=grafico2_1)
+```
+
+
+## Ejercicio 3
+
+
