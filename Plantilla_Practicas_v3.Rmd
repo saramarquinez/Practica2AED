@@ -424,4 +424,34 @@ ggsave('./results/Ejercicio4.pdf')
 
 ## Ejercicio 5
 
+```{r}
+load("./data/Experimento.Rdata")
+
+str(Experimento)
+```
+```{r}
+grafico5_1<-ggplot(data=Experimento,aes(x=Dosis,y=Altura,colour=Complemento,group=Complemento,linetype=Complemento, shape=Complemento))+geom_point()+geom_line()
+
+grafico5_1
+```
+
+```{r}
+grafico5_1<-ggplot(data=Experimento,aes(x=Dosis,y=Altura,colour=Complemento,group=Complemento,linetype=Complemento, shape=Complemento))+geom_point()+geom_line()+geom_errorbar(aes(ymin=Altura-Error_Altura,ymax=Altura+Error_Altura))
+
+grafico5_1
+```
+En este gráfico podemos ver cada valor con su respectivo error, el cual sale con el mismo tipo de línea que las que unes cada tipo de punto.
+
+
+```{r}
+grafico5_3<-ggplot(data=Experimento,aes(x=Dosis,y=Altura,colour=Complemento,group=Complemento))+geom_point(aes(shape= Complemento))+geom_line(aes(linetype=Complemento))+geom_errorbar(aes(ymin=Altura-Error_Altura,ymax=Altura+Error_Altura,linetype=Complemento))+scale_color_brewer(palette="Reds")
+
+grafico5_3
+```
+Para conseguir una grafica igual, tenemos que definir la estética en los puntos, el las líneas y en los errores.
+
+
+```{r}
+ggsave('./results/Ejercicio5.pdf') 
+```
 
