@@ -455,3 +455,36 @@ Para conseguir una grafica igual, tenemos que definir la estética en los puntos
 ggsave('./results/Ejercicio5.pdf') 
 ```
 
+
+## Ejercico 6
+
+```{r}
+load("./data/iceRiver.RData")
+ls() #miramos el nombre correcto
+str(ice.river.df)
+```
+
+```{r}
+library(tidyr)
+grafico6_1<-ggplot()+geom_line(data=ice.river.df,aes(x=time,y=flow.vat),colour="red")+geom_line(data=ice.river.df,aes(x=time,y=flow.jok),colour="blue")
+
+grafico6_1
+```
+En esta gráfica vemos que el eje Y toma como nombre flow.vat, para ello a continuación usaremos la función labs para ponerlo de manera más correcta.
+
+```{r}
+grafico6_2<-ggplot()+geom_line(data=ice.river.df,aes(x=time,y=flow.vat),colour="red")+geom_line(data=ice.river.df,aes(x=time,y=flow.jok),colour="blue")+labs(title="Caudal diario de dos ríos islandeses",subtitle="Mediciones durante un período de tres años",x="Fecha",y="Caudal")
+
+grafico6_2
+```
+
+En este gráfico, podemos ver en rojo el caudal del río Vat a lo largo de los años años y los mismo pero en azul para el río Jok.
+
+```{r}
+ggsave('./results/Ejercicio6.pdf') 
+```
+
+
+## Ejercicio 7
+
+
