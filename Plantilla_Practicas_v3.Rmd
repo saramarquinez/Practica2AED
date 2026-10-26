@@ -300,7 +300,7 @@ grafico2<-grafico2+geom_point()
 
 grafico2
 ```
-
+Con la estetica de color de RainTomorrow, vemos que 2
 
 ```{r}
 grafico3<-grafico2+ggtitle("Temperatura mínima vs temperatura máxima")
@@ -380,5 +380,48 @@ ggsave('./results/Ejercicio3.pdf',plot=iris.grafico4)
 ```
 
 
+## Ejercicio 4
+```{r}
+load("./data/Ejercicio4_Data.Rdata")
+
+str(DatosEjer4)
+```
+
+```{r}
+library(ggplot2)
+grafico4_1<-ggplot(data=DatosEjer4,aes(x=Fecha,y=Ventas,colour=Fabricante))+geom_point()
+
+grafico4_1
+```
+En este gráfico podemos ver una distrubución de los datos de las ventas, pero no se ve clara la evolución ya que no estan los datosd unidos con líneas.
+
+```{r}
+grafico4_2<-ggplot(data=DatosEjer4,aes(x=Fecha,y=Ventas,colour=Fabricante,group=Fabricante))+geom_point()+geom_line()
+
+grafico4_2
+```
+En este gráfico se ve muchismo más clara la evolución de las ventas de cada fabricante a lo largo de los años, viendo las subidas y las bajadas.
+
+```{r}
+
+grafico4_2<-ggplot(data=DatosEjer4,aes(x=Fecha,y=Ventas,colour=Fabricante,group=Fabricante,linetype=Fabricante))+geom_point()+geom_line()
+
+grafico4_2
+    
+```
+En este caso lo que hemos modificado es el tipo de linea que une los puntos de cada fabricante. Para Microsoft tenemos linea continua y para Apple, línea discontinua.
+
+```{r}
+grafico4_4<-grafico4_2+ggtitle("Ventas mensuales de diferentes compañías tecnológicas")
+
+grafico4_4
+```
+```{r}
+ggsave('./results/Ejercicio4.pdf') 
+```
+
+
+
+## Ejercicio 5
 
 
